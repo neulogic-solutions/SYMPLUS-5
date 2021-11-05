@@ -18,7 +18,7 @@ wwv_flow_api.import_begin (
 ,p_default_workspace_id=>131300354520317431
 ,p_default_application_id=>5210831000
 ,p_default_id_offset=>1590211496873308611
-,p_default_owner=>'GDL'
+,p_default_owner=>'AVA'
 );
 end;
 /
@@ -28,7 +28,7 @@ prompt APPLICATION 5210831000 - Update
 -- Application Export:
 --   Application:     5210831000
 --   Name:            Update
---   Date and Time:   18:17 Monday September 27, 2021
+--   Date and Time:   23:46 Thursday November 4, 2021
 --   Exported By:     JOYCE
 --   Flashback:       0
 --   Export Type:     Application Export
@@ -83,7 +83,7 @@ prompt --application/create_application
 begin
 wwv_flow_api.create_flow(
  p_id=>wwv_flow.g_flow_id
-,p_owner=>nvl(wwv_flow_application_install.get_schema,'GDL')
+,p_owner=>nvl(wwv_flow_application_install.get_schema,'AVA')
 ,p_name=>nvl(wwv_flow_application_install.get_application_name,'Update')
 ,p_alias=>nvl(wwv_flow_application_install.get_application_alias,'SYMUPD1')
 ,p_page_view_logging=>'YES'
@@ -111,7 +111,7 @@ wwv_flow_api.create_flow(
 ,p_public_user=>'APEX_PUBLIC_USER'
 ,p_proxy_server=>nvl(wwv_flow_application_install.get_proxy,'')
 ,p_no_proxy_domains=>nvl(wwv_flow_application_install.get_no_proxy_domains,'')
-,p_flow_version=>'5.21.8'
+,p_flow_version=>'5.21.11'
 ,p_flow_status=>'AVAILABLE_W_EDIT_LINK'
 ,p_flow_unavailable_text=>'This application is currently unavailable at this time.'
 ,p_exact_substitutions_only=>'Y'
@@ -130,7 +130,7 @@ wwv_flow_api.create_flow(
 ,p_substitution_string_02=>'APP_SYM'
 ,p_substitution_value_02=>'f?p=SYMADMIN5:HOME:&SESSION.'
 ,p_last_updated_by=>'RIDWAN'
-,p_last_upd_yyyymmddhh24miss=>'20210905134421'
+,p_last_upd_yyyymmddhh24miss=>'20211104105847'
 ,p_file_prefix => nvl(wwv_flow_application_install.get_static_app_file_prefix,'')
 ,p_files_version=>4
 ,p_ui_type_name => null
@@ -29342,8 +29342,8 @@ wwv_flow_api.create_page(
 ,p_step_template=>wwv_flow_api.id(1862911605226625155)
 ,p_page_template_options=>'#DEFAULT#'
 ,p_help_text=>'No help is available for this page.'
-,p_last_updated_by=>'JOYCE'
-,p_last_upd_yyyymmddhh24miss=>'20210628142310'
+,p_last_updated_by=>'RIDWAN'
+,p_last_upd_yyyymmddhh24miss=>'20210929133153'
 );
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(2501680339457883025)
@@ -29372,7 +29372,7 @@ wwv_flow_api.create_page_plug(
 ,p_query_type=>'SQL'
 ,p_plug_source=>wwv_flow_string.join(wwv_flow_t_varchar2(
 'select *',
-'from vl_99_89_upd_sta'))
+'from   vl_99_89_upd_sta'))
 ,p_plug_source_type=>'NATIVE_IR'
 ,p_plug_query_options=>'DERIVED_REPORT_COLUMNS'
 ,p_prn_output_show_link=>'Y'
@@ -29411,23 +29411,11 @@ wwv_flow_api.create_worksheet(
 ,p_max_row_count=>'1000000'
 ,p_max_row_count_message=>'The maximum row count for this report is #MAX_ROW_COUNT# rows.  Please apply a filter to reduce the number of records in your query.'
 ,p_no_data_found_message=>'No Record Found.'
-,p_allow_report_saving=>'N'
 ,p_allow_report_categories=>'N'
-,p_pagination_display_pos=>'BOTTOM_RIGHT'
 ,p_show_search_bar=>'N'
-,p_report_list_mode=>'TABS'
 ,p_fixed_header=>'NONE'
 ,p_show_detail_link=>'N'
-,p_show_rows_per_page=>'N'
-,p_show_sort=>'N'
-,p_show_chart=>'N'
-,p_show_pivot=>'N'
 ,p_show_calendar=>'N'
-,p_show_flashback=>'N'
-,p_show_reset=>'N'
-,p_allow_exclude_null_values=>'N'
-,p_allow_hide_extra_columns=>'N'
-,p_icon_view_columns_per_row=>1
 ,p_owner=>'SETUP'
 ,p_internal_uid=>722030144145766862
 );
@@ -29740,18 +29728,18 @@ wwv_flow_api.create_page_process(
 ,p_process_sql_clob=>wwv_flow_string.join(wwv_flow_t_varchar2(
 'DECLARE',
 '  --',
-'  CURSOR c_rec IS',
-'    SELECT *',
-'    FROM   vl_99_89_upd_due;',
-'  --',
-'  v_rec vl_99_89_upd_due%ROWTYPE;',
+'    CURSOR c_rec IS',
+'        SELECT *',
+'        FROM   vl_99_89_upd_due;',
+'  --    ',
+'    v_rec vl_99_89_upd_due%ROWTYPE;',
 '  --',
 'BEGIN',
-'  OPEN  c_rec;',
-'  FETCH c_rec INTO v_rec;',
-'  CLOSE c_rec;',
-'  APEX_UTIL.SET_SESSION_STATE(''P1010_PRD_TP_DSC'',v_rec.prd_tp_dsc);',
-'  APEX_UTIL.SET_SESSION_STATE(''P1010_PRD_DT_DSC'',v_rec.prd_dt_dsc);',
+'    OPEN  c_rec;',
+'    FETCH c_rec INTO v_rec;',
+'    CLOSE c_rec;',
+'    APEX_UTIL.SET_SESSION_STATE(''P1010_PRD_TP_DSC'',v_rec.prd_tp_dsc);',
+'    APEX_UTIL.SET_SESSION_STATE(''P1010_PRD_DT_DSC'',v_rec.prd_dt_dsc);',
 'END;'))
 );
 end;
@@ -30929,7 +30917,7 @@ wwv_flow_api.create_page(
 ,p_page_template_options=>'#DEFAULT#'
 ,p_help_text=>'No help is available for this page.'
 ,p_last_updated_by=>'RIDWAN'
-,p_last_upd_yyyymmddhh24miss=>'20210511144017'
+,p_last_upd_yyyymmddhh24miss=>'20210929132226'
 );
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(2509256330883095431)
