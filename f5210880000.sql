@@ -18,7 +18,7 @@ wwv_flow_api.import_begin (
 ,p_default_workspace_id=>131300354520317431
 ,p_default_application_id=>5210880000
 ,p_default_id_offset=>1590414561489615337
-,p_default_owner=>'GDL'
+,p_default_owner=>'AVA'
 );
 end;
 /
@@ -28,7 +28,7 @@ prompt APPLICATION 5210880000 - GDL Saver Product
 -- Application Export:
 --   Application:     5210880000
 --   Name:            GDL Saver Product
---   Date and Time:   05:18 Tuesday September 28, 2021
+--   Date and Time:   09:20 Friday November 5, 2021
 --   Exported By:     JOYCE
 --   Flashback:       0
 --   Export Type:     Application Export
@@ -42,8 +42,8 @@ prompt APPLICATION 5210880000 - GDL Saver Product
 --       Dynamic Actions:         28
 --     Shared Components:
 --       Logic:
---         Items:                 19
---         Computations:           6
+--         Items:                 21
+--         Computations:           8
 --         App Settings:           1
 --         Build Options:          1
 --       Navigation:
@@ -85,7 +85,7 @@ prompt --application/create_application
 begin
 wwv_flow_api.create_flow(
  p_id=>wwv_flow.g_flow_id
-,p_owner=>nvl(wwv_flow_application_install.get_schema,'GDL')
+,p_owner=>nvl(wwv_flow_application_install.get_schema,'AVA')
 ,p_name=>nvl(wwv_flow_application_install.get_application_name,'GDL Saver Product')
 ,p_alias=>nvl(wwv_flow_application_install.get_application_alias,'SYMGDL1')
 ,p_page_view_logging=>'YES'
@@ -93,9 +93,9 @@ wwv_flow_api.create_flow(
 ,p_checksum_salt=>'B6EA66BDF8F3DC3FF4741960DA0FEF09FB164214FD04AE12C3F4B0CB5EE7DC11'
 ,p_bookmark_checksum_function=>'SH512'
 ,p_max_session_length_sec=>28800
-,p_on_max_session_timeout_url=>'f?p=MAIN:SYMEXP'
+,p_on_max_session_timeout_url=>'f?p=&AI_HOME_ALIAS.:SYMEXP'
 ,p_max_session_idle_sec=>3600
-,p_on_max_idle_timeout_url=>'f?p=MAIN:SYMIDLE'
+,p_on_max_idle_timeout_url=>'f?p=&AI_HOME_ALIAS.:SYMIDLE'
 ,p_compatibility_mode=>'19.1'
 ,p_flow_language=>'en'
 ,p_flow_language_derived_from=>'FLOW_PRIMARY_LANGUAGE'
@@ -113,7 +113,7 @@ wwv_flow_api.create_flow(
 ,p_public_user=>'APEX_PUBLIC_USER'
 ,p_proxy_server=>nvl(wwv_flow_application_install.get_proxy,'')
 ,p_no_proxy_domains=>nvl(wwv_flow_application_install.get_no_proxy_domains,'')
-,p_flow_version=>'5.21.8'
+,p_flow_version=>'5.21.11'
 ,p_flow_status=>'AVAILABLE_W_EDIT_LINK'
 ,p_flow_unavailable_text=>'This application is currently unavailable at this time.'
 ,p_exact_substitutions_only=>'Y'
@@ -126,9 +126,9 @@ wwv_flow_api.create_flow(
 ,p_substitution_string_01=>'LINK'
 ,p_substitution_value_01=>'<img  class="link_image" src="#WORKSPACE_IMAGES#details-pane.png" style="height: 18px;   width: 20px;  vertical-align: middle;" title="Click to view record">'
 ,p_substitution_string_02=>'APP_360'
-,p_substitution_value_02=>'SYMCIS'
-,p_last_updated_by=>'JOYCE'
-,p_last_upd_yyyymmddhh24miss=>'20210911140439'
+,p_substitution_value_02=>'&AI_GET_CIS_ALIAS.'
+,p_last_updated_by=>'RIDWAN'
+,p_last_upd_yyyymmddhh24miss=>'20211104111525'
 ,p_file_prefix => nvl(wwv_flow_application_install.get_static_app_file_prefix,'')
 ,p_files_version=>3
 ,p_ui_type_name => null
@@ -695,6 +695,18 @@ wwv_flow_api.create_flow_item(
 ,p_protection_level=>'I'
 );
 wwv_flow_api.create_flow_item(
+ p_id=>wwv_flow_api.id(1691820872340448439)
+,p_name=>'AI_GET_CIS_ALIAS'
+,p_scope=>'GLOBAL'
+,p_protection_level=>'I'
+);
+wwv_flow_api.create_flow_item(
+ p_id=>wwv_flow_api.id(1694807196080851511)
+,p_name=>'AI_HOME_ALIAS'
+,p_scope=>'GLOBAL'
+,p_protection_level=>'I'
+);
+wwv_flow_api.create_flow_item(
  p_id=>wwv_flow_api.id(2993298413612309718)
 ,p_name=>'AI_HOME_APP'
 ,p_protection_level=>'I'
@@ -784,6 +796,32 @@ wwv_flow_api.create_flow_computation(
 'SELECT APPL_DSC_DSP ',
 'FROM   V_99_$$_USR_MNU ',
 'WHERE  apx_id = v(''APP_ID'')'))
+);
+wwv_flow_api.create_flow_computation(
+ p_id=>wwv_flow_api.id(1691821097049450671)
+,p_computation_sequence=>10
+,p_computation_item=>'AI_GET_CIS_ALIAS'
+,p_computation_point=>'BEFORE_HEADER'
+,p_computation_type=>'QUERY'
+,p_computation_processed=>'REPLACE_EXISTING'
+,p_computation=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'select APL_ALIAS',
+'from   V_99_VQ_APX_VER',
+'where  VER_DM = :AI_VER_NO',
+'and    MDL_DM = ''CS'';'))
+);
+wwv_flow_api.create_flow_computation(
+ p_id=>wwv_flow_api.id(1694807473736863801)
+,p_computation_sequence=>10
+,p_computation_item=>'AI_HOME_ALIAS'
+,p_computation_point=>'BEFORE_HEADER'
+,p_computation_type=>'QUERY'
+,p_computation_processed=>'REPLACE_EXISTING'
+,p_computation=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'SELECT APL_ALIAS',
+'FROM   V_99_VQ_APX_VER',
+'WHERE  MDL_DM = ''00''',
+'AND    VER_DM = :AI_VER_NO'))
 );
 wwv_flow_api.create_flow_computation(
  p_id=>wwv_flow_api.id(2997241731988689179)
@@ -16684,8 +16722,8 @@ wwv_flow_api.create_authentication(
 'END;',
 ''))
 ,p_invalid_session_type=>'URL'
-,p_invalid_session_url=>'f?p=MAIN:SYMLOGIN'
-,p_logout_url=>'f?p=MAIN:SYMEXIT'
+,p_invalid_session_url=>'f?p=&AI_HOME_ALIAS.:SYMLOGIN'
+,p_logout_url=>'f?p=&AI_HOME_ALIAS.:SYMEXIT'
 ,p_pre_auth_process=>'pr_pre_auth '
 ,p_post_auth_process=>'pk$990.pr_alath'
 ,p_cookie_name=>'SYMSSO'
@@ -23540,7 +23578,7 @@ wwv_flow_api.create_user_interface(
 ,p_is_default=>true
 ,p_theme_id=>200
 ,p_home_url=>'f?p=&APP_ID.:DASHBOARD:&SESSION.'
-,p_login_url=>'f?p=&AI_HOME_APP.:LOGIN:&SESSION.'
+,p_login_url=>'f?p=&AI_HOME_ALIAS.:SYMLOGIN:&SESSION.'
 ,p_theme_style_by_user_pref=>true
 ,p_built_with_love=>false
 ,p_global_page_id=>0
