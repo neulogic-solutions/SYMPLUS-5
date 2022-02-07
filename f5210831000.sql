@@ -28,7 +28,7 @@ prompt APPLICATION 5210831000 - Update
 -- Application Export:
 --   Application:     5210831000
 --   Name:            Update
---   Date and Time:   23:46 Thursday November 4, 2021
+--   Date and Time:   09:11 Monday January 24, 2022
 --   Exported By:     JOYCE
 --   Flashback:       0
 --   Export Type:     Application Export
@@ -40,9 +40,9 @@ prompt APPLICATION 5210831000 - Update
 --       Dynamic Actions:         22
 --     Shared Components:
 --       Logic:
---         Items:                 23
+--         Items:                 24
 --         Processes:              1
---         Computations:           8
+--         Computations:           9
 --         App Settings:           1
 --         Build Options:          1
 --       Navigation:
@@ -111,7 +111,7 @@ wwv_flow_api.create_flow(
 ,p_public_user=>'APEX_PUBLIC_USER'
 ,p_proxy_server=>nvl(wwv_flow_application_install.get_proxy,'')
 ,p_no_proxy_domains=>nvl(wwv_flow_application_install.get_no_proxy_domains,'')
-,p_flow_version=>'5.21.11'
+,p_flow_version=>'5.22.02'
 ,p_flow_status=>'AVAILABLE_W_EDIT_LINK'
 ,p_flow_unavailable_text=>'This application is currently unavailable at this time.'
 ,p_exact_substitutions_only=>'Y'
@@ -128,9 +128,9 @@ wwv_flow_api.create_flow(
 ,p_substitution_string_01=>'LINK'
 ,p_substitution_value_01=>'<img  class="link_image" src="#WORKSPACE_IMAGES#details-pane.png" style="height: 18px;   width: 20px;  vertical-align: middle;" title="Click to view record">'
 ,p_substitution_string_02=>'APP_SYM'
-,p_substitution_value_02=>'f?p=SYMADMIN5:HOME:&SESSION.'
-,p_last_updated_by=>'RIDWAN'
-,p_last_upd_yyyymmddhh24miss=>'20211104105847'
+,p_substitution_value_02=>'f?p=&AI_HOME_ALIAS.:HOME:&SESSION.'
+,p_last_updated_by=>'REMI'
+,p_last_upd_yyyymmddhh24miss=>'20220124083555'
 ,p_file_prefix => nvl(wwv_flow_application_install.get_static_app_file_prefix,'')
 ,p_files_version=>4
 ,p_ui_type_name => null
@@ -576,6 +576,12 @@ wwv_flow_api.create_flow_item(
 ,p_protection_level=>'I'
 );
 wwv_flow_api.create_flow_item(
+ p_id=>wwv_flow_api.id(1723301271233715544)
+,p_name=>'AI_HOME_ALIAS'
+,p_scope=>'GLOBAL'
+,p_protection_level=>'I'
+);
+wwv_flow_api.create_flow_item(
  p_id=>wwv_flow_api.id(1876769170275553841)
 ,p_name=>'AI_HOME_APP'
 ,p_protection_level=>'I'
@@ -758,6 +764,19 @@ wwv_flow_api.create_flow_computation(
 ,p_computation_type=>'STATIC_ASSIGNMENT'
 ,p_computation_processed=>'REPLACE_EXISTING'
 ,p_computation=>'5.21.8'
+);
+wwv_flow_api.create_flow_computation(
+ p_id=>wwv_flow_api.id(1723301409729721343)
+,p_computation_sequence=>10
+,p_computation_item=>'AI_HOME_ALIAS'
+,p_computation_point=>'ON_NEW_INSTANCE'
+,p_computation_type=>'QUERY'
+,p_computation_processed=>'REPLACE_EXISTING'
+,p_computation=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'SELECT APL_ALIAS',
+'FROM   V_99_VQ_APX_VER',
+'WHERE  MDL_DM = ''99''',
+'AND    VER_DM = :AI_VER_NO'))
 );
 wwv_flow_api.create_flow_computation(
  p_id=>wwv_flow_api.id(1876778187814764847)
@@ -27937,7 +27956,7 @@ wwv_flow_api.create_user_interface(
 ,p_is_default=>true
 ,p_theme_id=>200
 ,p_home_url=>'f?p=&APP_ID.:HOME:&SESSION.'
-,p_login_url=>'f?p=SYMADMIN:LOGIN:&SESSION.'
+,p_login_url=>'f?p=SYMADMIN5:LOGIN:&SESSION.'
 ,p_theme_style_by_user_pref=>true
 ,p_built_with_love=>false
 ,p_global_page_id=>0

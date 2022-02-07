@@ -28,7 +28,7 @@ prompt APPLICATION 5210850900 - Region Reporting
 -- Application Export:
 --   Application:     5210850900
 --   Name:            Region Reporting
---   Date and Time:   09:24 Friday November 5, 2021
+--   Date and Time:   10:17 Monday January 24, 2022
 --   Exported By:     JOYCE
 --   Flashback:       0
 --   Export Type:     Application Export
@@ -112,7 +112,7 @@ wwv_flow_api.create_flow(
 ,p_public_user=>'APEX_PUBLIC_USER'
 ,p_proxy_server=>nvl(wwv_flow_application_install.get_proxy,'')
 ,p_no_proxy_domains=>nvl(wwv_flow_application_install.get_no_proxy_domains,'')
-,p_flow_version=>'5.21.11'
+,p_flow_version=>'5.22.02'
 ,p_flow_status=>'AVAILABLE_W_EDIT_LINK'
 ,p_flow_unavailable_text=>'This application is currently unavailable at this time.'
 ,p_exact_substitutions_only=>'Y'
@@ -126,8 +126,8 @@ wwv_flow_api.create_flow(
 ,p_substitution_value_01=>'<img  class="link_image" src="#WORKSPACE_IMAGES#details-pane.png" style="height: 18px;   width: 20px;  vertical-align: middle;" title="Click to view record">'
 ,p_substitution_string_02=>'APP_360'
 ,p_substitution_value_02=>'&AI_GET_CIS_ALIAS.'
-,p_last_updated_by=>'RIDWAN'
-,p_last_upd_yyyymmddhh24miss=>'20211104110904'
+,p_last_updated_by=>'REMI'
+,p_last_upd_yyyymmddhh24miss=>'20220124083949'
 ,p_file_prefix => nvl(wwv_flow_application_install.get_static_app_file_prefix,'')
 ,p_files_version=>3
 ,p_ui_type_name => null
@@ -563,7 +563,7 @@ wwv_flow_api.create_list(
 );
 wwv_flow_api.create_list_item(
  p_id=>wwv_flow_api.id(1779124114098276039)
-,p_list_item_display_sequence=>5
+,p_list_item_display_sequence=>10
 ,p_list_item_link_text=>'Search'
 ,p_list_item_link_target=>'javascript:$.event.trigger(''DASearch'');'
 ,p_list_item_icon=>'fa-search'
@@ -571,11 +571,20 @@ wwv_flow_api.create_list_item(
 ,p_list_item_current_type=>'TARGET_PAGE'
 );
 wwv_flow_api.create_list_item(
- p_id=>wwv_flow_api.id(1779170472959236149)
+ p_id=>wwv_flow_api.id(1748254671949370413)
 ,p_list_item_display_sequence=>20
+,p_list_item_link_text=>'Feedback'
+,p_list_item_link_target=>'f?p=&AI_HOME_ALIAS.:200000:&SESSION.:::200000:P200000_APP_ID,P200000_PAGE_ID:&APP_ID.,&APP_PAGE_ID.'
+,p_list_item_icon=>'fa-comment-o'
+,p_list_item_current_type=>'TARGET_PAGE'
+);
+wwv_flow_api.create_list_item(
+ p_id=>wwv_flow_api.id(1779170472959236149)
+,p_list_item_display_sequence=>30
 ,p_list_item_link_text=>'Feedback'
 ,p_list_item_link_target=>'f?p=&APP_ID.:10010:&SESSION.::&DEBUG.:10010:P10010_PAGE_ID:&APP_PAGE_ID.:'
 ,p_list_item_icon=>'fa-comment-o'
+,p_list_item_disp_cond_type=>'NEVER'
 ,p_list_item_current_type=>'TARGET_PAGE'
 );
 wwv_flow_api.create_list_item(
@@ -597,7 +606,7 @@ wwv_flow_api.create_list_item(
 );
 wwv_flow_api.create_list_item(
  p_id=>wwv_flow_api.id(1777411676788148487)
-,p_list_item_display_sequence=>250
+,p_list_item_display_sequence=>60
 ,p_list_item_link_text=>'Change Password'
 ,p_list_item_link_target=>'f?p=MAIN:99909100:&SESSION.'
 ,p_list_item_icon=>'fa-lock-password'
@@ -606,7 +615,7 @@ wwv_flow_api.create_list_item(
 );
 wwv_flow_api.create_list_item(
  p_id=>wwv_flow_api.id(1778836490282244905)
-,p_list_item_display_sequence=>295
+,p_list_item_display_sequence=>70
 ,p_list_item_link_text=>'---'
 ,p_list_item_link_target=>'separator'
 ,p_parent_list_item_id=>wwv_flow_api.id(1778836058412244905)
@@ -614,7 +623,7 @@ wwv_flow_api.create_list_item(
 );
 wwv_flow_api.create_list_item(
  p_id=>wwv_flow_api.id(1778836942803244905)
-,p_list_item_display_sequence=>300
+,p_list_item_display_sequence=>80
 ,p_list_item_link_text=>'Sign Out'
 ,p_list_item_link_target=>'&LOGOUT_URL.'
 ,p_list_item_icon=>'fa-sign-out'
@@ -6267,7 +6276,7 @@ wwv_flow_api.create_theme(
 ,p_default_popup_transition=>'NONE'
 ,p_default_navbar_list_template=>wwv_flow_api.id(1782570779405513918)
 ,p_file_prefix => nvl(wwv_flow_application_install.get_static_theme_file_prefix(200),'#IMAGE_PREFIX#themes/theme_42/1.3/')
-,p_files_version=>145
+,p_files_version=>147
 ,p_icon_library=>'FONTAPEX'
 ,p_javascript_file_urls=>wwv_flow_string.join(wwv_flow_t_varchar2(
 '#IMAGE_PREFIX#libraries/apex/#MIN_DIRECTORY#widget.stickyWidget#MIN#.js?v=#APEX_VERSION#',
@@ -6286,7 +6295,8 @@ wwv_flow_api.create_theme_style(
 ,p_is_public=>true
 ,p_is_accessible=>true
 ,p_theme_roller_input_file_urls=>'#THEME_IMAGES#less/theme/Vita.less'
-,p_theme_roller_config=>'{"customCSS":".a-Menu--top>.a-Menu-content>ul li:first-child{\n /* background-color:red !important;*/\ndisplay: none !important;\n}","vars":{"@g_Accent-BG":"#374e59","@g_Nav-BG":"#374e59","@g_Nav-Active-BG":"#474347"}}'
+,p_theme_roller_config=>'{"customCSS":".a-Menu--top>.a-Menu-content>ul li:first-child{\n /* background-color:red !important;*/\ndisplay: none !important;\n}\n.apex-item-select,\n\n.apex-item-text,\n\n.apex-item-textarea,\n\n.apex-item-multi, \n\n.a-IRR-search-field {\n\n bac'
+||'kface-visibility: hidden;\n\n} ","vars":{"@g_Accent-BG":"#374e59","@g_Nav-BG":"#374e59","@g_Nav-Active-BG":"#474347"}}'
 ,p_theme_roller_output_file_url=>'#THEME_DB_IMAGES#1766823918432178040.css'
 ,p_theme_roller_read_only=>false
 );
@@ -7880,7 +7890,8 @@ wwv_flow_api.g_varchar2_table(1475) := '6F7274616E743B0D0A7D0D0A2E752D636F6C6F72
 wwv_flow_api.g_varchar2_table(1476) := '0D0A7D0D0A2E752D636F6C6F722D7472616E73706172656E742D62642C0D0A2E752D636F6C6F722D7472616E73706172656E742D626F72646572207B0D0A2020626F726465722D636F6C6F723A207472616E73706172656E742021696D706F7274616E74';
 wwv_flow_api.g_varchar2_table(1477) := '3B0D0A7D0D0A0D0A2F2A200D0A202A204F7261636C65204170706C69636174696F6E204578707265737320352E30205468656D6520526F6C6C657220437573746F6D20435353200D0A202A0D0A202A2F0D0A0D0A2E612D4D656E752D2D746F703E2E612D';
 wwv_flow_api.g_varchar2_table(1478) := '4D656E752D636F6E74656E743E756C206C693A66697273742D6368696C647B0D0A202F2A206261636B67726F756E642D636F6C6F723A7265642021696D706F7274616E743B2A2F0D0A646973706C61793A206E6F6E652021696D706F7274616E743B0D0A';
-wwv_flow_api.g_varchar2_table(1479) := '7D';
+wwv_flow_api.g_varchar2_table(1479) := '7D0D0A2E617065782D6974656D2D73656C6563742C0D0A0D0A2E617065782D6974656D2D746578742C0D0A0D0A2E617065782D6974656D2D74657874617265612C0D0A0D0A2E617065782D6974656D2D6D756C74692C200D0A0D0A2E612D4952522D7365';
+wwv_flow_api.g_varchar2_table(1480) := '617263682D6669656C64207B0D0A0D0A206261636B666163652D7669736962696C6974793A2068696464656E3B0D0A0D0A7D20';
 null;
 end;
 /
@@ -24824,7 +24835,7 @@ wwv_flow_api.create_page(
 ,p_page_template_options=>'#DEFAULT#'
 ,p_protection_level=>'C'
 ,p_last_updated_by=>'RIDWAN'
-,p_last_upd_yyyymmddhh24miss=>'20210902112408'
+,p_last_upd_yyyymmddhh24miss=>'20211111110157'
 );
 end;
 /
