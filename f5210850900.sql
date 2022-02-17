@@ -28,7 +28,7 @@ prompt APPLICATION 5210850900 - Region Reporting
 -- Application Export:
 --   Application:     5210850900
 --   Name:            Region Reporting
---   Date and Time:   10:17 Monday January 24, 2022
+--   Date and Time:   13:18 Wednesday February 9, 2022
 --   Exported By:     JOYCE
 --   Flashback:       0
 --   Export Type:     Application Export
@@ -42,7 +42,7 @@ prompt APPLICATION 5210850900 - Region Reporting
 --       Dynamic Actions:         30
 --     Shared Components:
 --       Logic:
---         Items:                 19
+--         Items:                 20
 --         Computations:           8
 --         App Settings:           1
 --         Build Options:          1
@@ -92,9 +92,9 @@ wwv_flow_api.create_flow(
 ,p_checksum_salt=>'B6EA66BDF8F3DC3FF4741960DA0FEF09FB164214FD04AE12C3F4B0CB5EE7DC11'
 ,p_bookmark_checksum_function=>'SH512'
 ,p_max_session_length_sec=>28800
-,p_on_max_session_timeout_url=>'f?p=&AI_HOME_ALIAS.:SYMEXP:&SESSION.'
+,p_on_max_session_timeout_url=>'f?p=&MAIN_LOGIN.:SYMEXP:&SESSION.'
 ,p_max_session_idle_sec=>3600
-,p_on_max_idle_timeout_url=>'f?p=&AI_HOME_ALIAS.:SYMIDLE:&SESSION.'
+,p_on_max_idle_timeout_url=>'f?p=&MAIN_LOGIN.:SYMIDLE:&SESSION.'
 ,p_compatibility_mode=>'19.1'
 ,p_flow_language=>'en'
 ,p_flow_language_derived_from=>'FLOW_PRIMARY_LANGUAGE'
@@ -126,8 +126,10 @@ wwv_flow_api.create_flow(
 ,p_substitution_value_01=>'<img  class="link_image" src="#WORKSPACE_IMAGES#details-pane.png" style="height: 18px;   width: 20px;  vertical-align: middle;" title="Click to view record">'
 ,p_substitution_string_02=>'APP_360'
 ,p_substitution_value_02=>'&AI_GET_CIS_ALIAS.'
-,p_last_updated_by=>'REMI'
-,p_last_upd_yyyymmddhh24miss=>'20220124083949'
+,p_substitution_string_03=>'MAIN_LOGIN'
+,p_substitution_value_03=>'&AI_MAIN_APP.'
+,p_last_updated_by=>'JOYCE'
+,p_last_upd_yyyymmddhh24miss=>'20220209111911'
 ,p_file_prefix => nvl(wwv_flow_application_install.get_static_app_file_prefix,'')
 ,p_files_version=>3
 ,p_ui_type_name => null
@@ -834,6 +836,12 @@ wwv_flow_api.create_flow_item(
 wwv_flow_api.create_flow_item(
  p_id=>wwv_flow_api.id(3112481889836072759)
 ,p_name=>'AI_LOGO_URL'
+,p_scope=>'GLOBAL'
+,p_protection_level=>'I'
+);
+wwv_flow_api.create_flow_item(
+ p_id=>wwv_flow_api.id(1829409269761120120)
+,p_name=>'AI_MAIN_APP'
 ,p_scope=>'GLOBAL'
 ,p_protection_level=>'I'
 );
@@ -18222,7 +18230,7 @@ wwv_flow_api.create_authentication(
  p_id=>wwv_flow_api.id(1775305020328435742)
 ,p_name=>'Symplus'
 ,p_scheme_type=>'NATIVE_CUSTOM'
-,p_attribute_03=>'pk$990.fn_login'
+,p_attribute_03=>'pk$990.fn_loginv5'
 ,p_attribute_05=>'Y'
 ,p_attribute_09=>'NO_SSL'
 ,p_attribute_11=>'Y'
@@ -18230,12 +18238,13 @@ wwv_flow_api.create_authentication(
 ,p_plsql_code=>wwv_flow_string.join(wwv_flow_t_varchar2(
 'PROCEDURE pr_pre_auth IS',
 'BEGIN',
-'  pk$990.pr_blath (:P10_USERNAME);',
+'  pk$990.pr_blathv5 (:P10_USERNAME,',
+'                     :P10_VER_NO);',
 'END;',
 ''))
 ,p_invalid_session_type=>'URL'
-,p_invalid_session_url=>'f?p=&AI_HOME_ALIAS.:SYMLOGIN'
-,p_logout_url=>'f?p=&AI_HOME_ALIAS.:SYMEXIT'
+,p_invalid_session_url=>'f?p=&MAIN_LOGIN.:SYMLOGIN'
+,p_logout_url=>'f?p=&MAIN_LOGIN.:SYMEXIT'
 ,p_pre_auth_process=>'pr_pre_auth '
 ,p_post_auth_process=>'pk$990.pr_alath'
 ,p_cookie_name=>'SYMSSO'
@@ -24159,7 +24168,7 @@ wwv_flow_api.create_user_interface(
 ,p_is_default=>true
 ,p_theme_id=>200
 ,p_home_url=>'f?p=&APP_ID.:DASHBOARD:&SESSION.'
-,p_login_url=>'f?p=&AI_HOME_ALIAS.:SYMLOGIN:&SESSION.'
+,p_login_url=>'f?p=&MAIN_LOGIN.:SYMLOGIN:&SESSION.'
 ,p_theme_style_by_user_pref=>true
 ,p_built_with_love=>false
 ,p_global_page_id=>0
