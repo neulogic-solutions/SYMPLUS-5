@@ -28,7 +28,7 @@ prompt APPLICATION 5210850900 - Region Reporting
 -- Application Export:
 --   Application:     5210850900
 --   Name:            Region Reporting
---   Date and Time:   13:18 Wednesday February 9, 2022
+--   Date and Time:   13:44 Wednesday March 30, 2022
 --   Exported By:     JOYCE
 --   Flashback:       0
 --   Export Type:     Application Export
@@ -112,7 +112,7 @@ wwv_flow_api.create_flow(
 ,p_public_user=>'APEX_PUBLIC_USER'
 ,p_proxy_server=>nvl(wwv_flow_application_install.get_proxy,'')
 ,p_no_proxy_domains=>nvl(wwv_flow_application_install.get_no_proxy_domains,'')
-,p_flow_version=>'5.22.02'
+,p_flow_version=>'5.22.03'
 ,p_flow_status=>'AVAILABLE_W_EDIT_LINK'
 ,p_flow_unavailable_text=>'This application is currently unavailable at this time.'
 ,p_exact_substitutions_only=>'Y'
@@ -129,7 +129,7 @@ wwv_flow_api.create_flow(
 ,p_substitution_string_03=>'MAIN_LOGIN'
 ,p_substitution_value_03=>'&AI_MAIN_APP.'
 ,p_last_updated_by=>'JOYCE'
-,p_last_upd_yyyymmddhh24miss=>'20220209111911'
+,p_last_upd_yyyymmddhh24miss=>'20220322114448'
 ,p_file_prefix => nvl(wwv_flow_application_install.get_static_app_file_prefix,'')
 ,p_files_version=>3
 ,p_ui_type_name => null
@@ -593,7 +593,8 @@ wwv_flow_api.create_list_item(
  p_id=>wwv_flow_api.id(1779169945713232069)
 ,p_list_item_display_sequence=>40
 ,p_list_item_link_text=>'FAQs'
-,p_list_item_link_target=>'f?p=&APP_ID.:20000:&SESSION.::&DEBUG.:20000:::'
+,p_list_item_link_target=>'javascript:apex.navigation.dialog(''f?p=&AI_HOME_ALIAS.:10050:&SESSION.'',{title:''FAQs'',height:''680'',width:''800'','||wwv_flow.LF||
+'                                 maxWidth:''1200'', modal:false, resizable:false });'
 ,p_list_item_icon=>'fa-question'
 ,p_list_item_current_type=>'TARGET_PAGE'
 );

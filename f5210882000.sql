@@ -28,7 +28,7 @@ prompt APPLICATION 5210882000 - CSL-SR
 -- Application Export:
 --   Application:     5210882000
 --   Name:            CSL-SR
---   Date and Time:   14:21 Monday January 24, 2022
+--   Date and Time:   13:53 Wednesday March 30, 2022
 --   Exported By:     JOYCE
 --   Flashback:       0
 --   Export Type:     Application Export
@@ -41,7 +41,7 @@ prompt APPLICATION 5210882000 - CSL-SR
 --       Dynamic Actions:          1
 --     Shared Components:
 --       Logic:
---         Items:                 29
+--         Items:                 30
 --       Navigation:
 --         Lists:                  2
 --         Breadcrumbs:            1
@@ -82,7 +82,7 @@ wwv_flow_api.create_flow(
  p_id=>wwv_flow.g_flow_id
 ,p_owner=>nvl(wwv_flow_application_install.get_schema,'AVA')
 ,p_name=>nvl(wwv_flow_application_install.get_application_name,'CSL-SR')
-,p_alias=>nvl(wwv_flow_application_install.get_application_alias,'SYMCSLSR5210882000')
+,p_alias=>nvl(wwv_flow_application_install.get_application_alias,'CSLSR1')
 ,p_page_view_logging=>'YES'
 ,p_page_protection_enabled_y_n=>'Y'
 ,p_checksum_salt=>'75A4389D1A0B6603E4DECA407D25CDFC46604887B28CDD0B99B4C850A2B234DA'
@@ -91,7 +91,7 @@ wwv_flow_api.create_flow(
 ,p_on_max_session_timeout_url=>'f?p=SYMMAIN:SYMEXP:&SESSION.'
 ,p_max_session_idle_sec=>14400
 ,p_on_max_idle_timeout_url=>'f?p=SYMMAIN:SYMIDLE:&SESSION.'
-,p_compatibility_mode=>'5.1'
+,p_compatibility_mode=>'19.2'
 ,p_flow_language=>'en'
 ,p_flow_language_derived_from=>'FLOW_PRIMARY_LANGUAGE'
 ,p_date_format=>'DD-MON-YYYY'
@@ -127,11 +127,13 @@ wwv_flow_api.create_flow(
 ,p_substitution_string_04=>'DETAIL_LINK'
 ,p_substitution_value_04=>'<img src="#APP_IMAGES#view.gif" alt="view" title="click to view record">'
 ,p_substitution_string_05=>'APP_VERSION'
-,p_substitution_value_05=>'Release 2020-10'
+,p_substitution_value_05=>'Release 2022-02'
 ,p_substitution_string_06=>'APP_00'
 ,p_substitution_value_06=>'f?p=MAIN:HOME:&SESSION.'
-,p_last_updated_by=>'REMI'
-,p_last_upd_yyyymmddhh24miss=>'20220124082734'
+,p_substitution_string_07=>'MAIN_LOGIN'
+,p_substitution_value_07=>'&AI_MAIN_APP.'
+,p_last_updated_by=>'JOYCE'
+,p_last_upd_yyyymmddhh24miss=>'20220209112202'
 ,p_file_prefix => nvl(wwv_flow_application_install.get_static_app_file_prefix,'')
 ,p_files_version=>2
 ,p_ui_type_name => null
@@ -419,6 +421,12 @@ wwv_flow_api.create_flow_item(
 wwv_flow_api.create_flow_item(
  p_id=>wwv_flow_api.id(1855450839354011984)
 ,p_name=>'AI_INS_YN'
+,p_protection_level=>'I'
+);
+wwv_flow_api.create_flow_item(
+ p_id=>wwv_flow_api.id(1829607130494183037)
+,p_name=>'AI_MAIN_APP'
+,p_scope=>'GLOBAL'
 ,p_protection_level=>'I'
 );
 wwv_flow_api.create_flow_item(
@@ -10073,7 +10081,7 @@ wwv_flow_api.create_authentication(
  p_id=>wwv_flow_api.id(1855407499735869746)
 ,p_name=>'Symplus Login'
 ,p_scheme_type=>'NATIVE_CUSTOM'
-,p_attribute_03=>'pk$990.fn_login'
+,p_attribute_03=>'pk$990.fn_loginv5'
 ,p_attribute_05=>'Y'
 ,p_attribute_09=>'NO_SSL'
 ,p_attribute_11=>'Y'
@@ -10081,12 +10089,13 @@ wwv_flow_api.create_authentication(
 ,p_plsql_code=>wwv_flow_string.join(wwv_flow_t_varchar2(
 'PROCEDURE pr_pre_auth IS',
 'BEGIN',
-'  pk$990.pr_blath (:P101_USERNAME);',
+'  pk$990.pr_blathv5 (:P10_USERNAME,',
+'                     :P10_VER_NO);',
 'END;',
 ''))
 ,p_invalid_session_type=>'URL'
-,p_invalid_session_url=>'f?p=MAIN:SYMLOGIN:&SESSION.'
-,p_logout_url=>'f?p=MAIN:SYMEXIT'
+,p_invalid_session_url=>'f?p=&MAIN_LOGIN.:SYMLOGIN:&SESSION.'
+,p_logout_url=>'f?p=&MAIN_LOGIN.:SYMEXIT'
 ,p_pre_auth_process=>'pr_pre_auth '
 ,p_post_auth_process=>'pk$990.pr_alath'
 ,p_cookie_name=>'SYMSSO'
@@ -13816,7 +13825,7 @@ wwv_flow_api.create_user_interface(
 ,p_is_default=>true
 ,p_theme_id=>42
 ,p_home_url=>'f?p=&APP_ID.:HOME:&SESSION.'
-,p_login_url=>'f?p=MAIN:SYMLOGIN:&SESSION.'
+,p_login_url=>'f?p=MAIN_LOGIN:SYMLOGIN:&SESSION.'
 ,p_theme_style_by_user_pref=>false
 ,p_global_page_id=>0
 ,p_navigation_list_id=>wwv_flow_api.id(1855318513851812013)
