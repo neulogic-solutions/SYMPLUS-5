@@ -17,7 +17,7 @@ wwv_flow_api.import_begin (
 ,p_release=>'19.2.0.00.18'
 ,p_default_workspace_id=>131300354520317431
 ,p_default_application_id=>4000000
-,p_default_id_offset=>1715643307062816210
+,p_default_id_offset=>0
 ,p_default_owner=>'AVA'
 );
 end;
@@ -28,7 +28,7 @@ prompt APPLICATION 4000000 - Frequently Asked Questions
 -- Application Export:
 --   Application:     4000000
 --   Name:            Frequently Asked Questions
---   Date and Time:   13:31 Wednesday March 30, 2022
+--   Date and Time:   04:53 Wednesday July 20, 2022
 --   Exported By:     JOYCE
 --   Flashback:       0
 --   Export Type:     Application Export
@@ -73,7 +73,7 @@ prompt APPLICATION 4000000 - Frequently Asked Questions
 --       E-Mail:
 --     Supporting Objects:  Included
 --   Version:         19.2.0.00.18
---   Instance ID:     200127243961799
+--   Instance ID:     199010824017230
 --
 
 prompt --application/delete_application
@@ -105,7 +105,7 @@ wwv_flow_api.create_flow(
 ,p_documentation_banner=>'Application created from create application wizard 2019.04.05.'
 ,p_authentication=>'PLUGIN'
 ,p_authentication_id=>wwv_flow_api.id(1716200845481040062)
-,p_application_tab_set=>1
+,p_application_tab_set=>0
 ,p_logo_type=>'I'
 ,p_logo=>'#WORKSPACE_IMAGES#sym-logo11.png'
 ,p_app_builder_icon_name=>'app-icon.svg'
@@ -113,7 +113,7 @@ wwv_flow_api.create_flow(
 ,p_public_user=>'APEX_PUBLIC_USER'
 ,p_proxy_server=>nvl(wwv_flow_application_install.get_proxy,'')
 ,p_no_proxy_domains=>nvl(wwv_flow_application_install.get_no_proxy_domains,'')
-,p_flow_version=>'5.22.02'
+,p_flow_version=>'5.22.06'
 ,p_flow_status=>'AVAILABLE_W_EDIT_LINK'
 ,p_flow_unavailable_text=>'This application is currently unavailable at this time.'
 ,p_exact_substitutions_only=>'Y'
@@ -127,8 +127,8 @@ wwv_flow_api.create_flow(
 ,p_substitution_value_01=>'<img  class="link_image" src="#WORKSPACE_IMAGES#details-pane.png" style="height: 18px;   width: 20px;  vertical-align: middle;" title="Click to view record">'
 ,p_substitution_string_02=>'APP_360'
 ,p_substitution_value_02=>'&AI_GET_CIS_ALIAS.'
-,p_last_updated_by=>'REMI'
-,p_last_upd_yyyymmddhh24miss=>'20220124083216'
+,p_last_updated_by=>'JOYCE'
+,p_last_upd_yyyymmddhh24miss=>'20220720045026'
 ,p_file_prefix => nvl(wwv_flow_application_install.get_static_app_file_prefix,'')
 ,p_files_version=>3
 ,p_ui_type_name => null
@@ -5577,6 +5577,7 @@ wwv_flow_api.create_field_template(
 ,p_error_template=>'<span class="t-Form-error">#ERROR_MESSAGE#</span>'
 ,p_theme_id=>200
 ,p_theme_class_id=>3
+,p_translate_this_template=>'N'
 );
 end;
 /

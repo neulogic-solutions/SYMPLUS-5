@@ -17,7 +17,7 @@ wwv_flow_api.import_begin (
 ,p_release=>'19.2.0.00.18'
 ,p_default_workspace_id=>131300354520317431
 ,p_default_application_id=>5210880000
-,p_default_id_offset=>1590414561489615337
+,p_default_id_offset=>0
 ,p_default_owner=>'AVA'
 );
 end;
@@ -28,7 +28,7 @@ prompt APPLICATION 5210880000 - GDL Saver Product
 -- Application Export:
 --   Application:     5210880000
 --   Name:            GDL Saver Product
---   Date and Time:   13:51 Wednesday March 30, 2022
+--   Date and Time:   05:06 Wednesday July 20, 2022
 --   Exported By:     JOYCE
 --   Flashback:       0
 --   Export Type:     Application Export
@@ -73,7 +73,7 @@ prompt APPLICATION 5210880000 - GDL Saver Product
 --       E-Mail:
 --     Supporting Objects:  Included
 --   Version:         19.2.0.00.18
---   Instance ID:     200127243961799
+--   Instance ID:     199010824017230
 --
 
 prompt --application/delete_application
@@ -105,7 +105,7 @@ wwv_flow_api.create_flow(
 ,p_documentation_banner=>'Application created from create application wizard 2019.04.05.'
 ,p_authentication=>'PLUGIN'
 ,p_authentication_id=>wwv_flow_api.id(2993304627785322844)
-,p_application_tab_set=>1
+,p_application_tab_set=>0
 ,p_logo_type=>'I'
 ,p_logo=>'#WORKSPACE_IMAGES#sym-logo11.png'
 ,p_app_builder_icon_name=>'app-icon.svg'
@@ -113,7 +113,7 @@ wwv_flow_api.create_flow(
 ,p_public_user=>'APEX_PUBLIC_USER'
 ,p_proxy_server=>nvl(wwv_flow_application_install.get_proxy,'')
 ,p_no_proxy_domains=>nvl(wwv_flow_application_install.get_no_proxy_domains,'')
-,p_flow_version=>'5.22.03'
+,p_flow_version=>'5.22.06'
 ,p_flow_status=>'AVAILABLE_W_EDIT_LINK'
 ,p_flow_unavailable_text=>'This application is currently unavailable at this time.'
 ,p_exact_substitutions_only=>'Y'
@@ -130,7 +130,7 @@ wwv_flow_api.create_flow(
 ,p_substitution_string_03=>'MAIN_LOGIN'
 ,p_substitution_value_03=>'&AI_MAIN_APP.'
 ,p_last_updated_by=>'JOYCE'
-,p_last_upd_yyyymmddhh24miss=>'20220323140552'
+,p_last_upd_yyyymmddhh24miss=>'20220720050247'
 ,p_file_prefix => nvl(wwv_flow_application_install.get_static_app_file_prefix,'')
 ,p_files_version=>3
 ,p_ui_type_name => null
@@ -4529,6 +4529,7 @@ wwv_flow_api.create_plug_template(
 ,p_preset_template_options=>'margin-bottom-none:t-Form--noPadding:t-Form--stretchInputs:margin-left-none:margin-right-lg:margin-top-none'
 ,p_default_label_alignment=>'RIGHT'
 ,p_default_field_alignment=>'LEFT'
+,p_translate_this_template=>'N'
 );
 wwv_flow_api.create_plug_tmpl_display_point(
  p_id=>wwv_flow_api.id(3004114583352330751)
